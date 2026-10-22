@@ -1,6 +1,6 @@
 # 新用户快速上手：从安装到第一份费用报告
 
-适用于本地 MCP 版 **0.6.0-alpha.2**。按顺序完成：安装 → 配置自己的 Key → 自检 → 查询账户 → 保存并查看第一份报告。
+适用于本地 MCP 版 **0.6.0-alpha.3**。按顺序完成：安装 → 配置自己的 Key → 自检 → 查询账户 → 保存并查看第一份报告。
 
 本地版在自己的电脑上运行，通过 Cursor 等支持本地 MCP stdio 的客户端使用，不附带网页。README 中的界面截图属于 Sites 网页版。想使用网页或 ChatGPT 云端连接，请看 [Sites 安装说明](INSTALL.md)，不用照搬本篇配置。
 
@@ -18,7 +18,7 @@ npm --version
 新建一个专门安装本工具的空文件夹，在该文件夹内运行：
 
 ```bash
-npm install --ignore-scripts @cyuanxv/openrouter-analytics-mcp@0.6.0-alpha.2
+npm install --ignore-scripts @cyuanxv/openrouter-analytics-mcp@0.6.0-alpha.3
 ```
 
 这里固定版本，避免装到旧版。当前 `@alpha` 指向新版，省略版本可能装到不带自检的旧版。安装后的文件位于此目录的 `node_modules/@cyuanxv/openrouter-analytics-mcp/`，无需下载源码或手动构建。
@@ -94,7 +94,7 @@ node ./node_modules/@cyuanxv/openrouter-analytics-mcp/dist/stdio.js doctor --jso
 
 > 请调用 routerlens_status，确认本地服务已启动，并告诉我适配器版本。不要执行其他操作。
 
-预期 `mode=local-stdio`、`adapter_version=0.6.0-alpha.2`。工具 ID 保留了旧名称；`version=0.5.0` 是共享核心版本，不代表安装包没升级。本地版 `authentication_verified=false` 是没有 Sites 云端身份的正常表现。状态查询不连接账户，`connectivity_verified=false` 也不能单凭此判断连接失败。
+预期 `mode=local-stdio`、`adapter_version=0.6.0-alpha.3`。工具 ID 保留了旧名称；`version=0.5.0` 是共享核心版本，不代表安装包没升级。本地版 `authentication_verified=false` 是没有 Sites 云端身份的正常表现。状态查询不连接账户，`connectivity_verified=false` 也不能单凭此判断连接失败。
 
 再说：
 

@@ -2,7 +2,7 @@
 
 [![Linux CI](https://github.com/cyuanxv/openrouter-analytics-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/cyuanxv/openrouter-analytics-mcp/actions/workflows/ci.yml)
 
-> 0.6.0-alpha.2 is available on GitHub, npm (alpha) and the official MCP Registry. See [publication and verification](docs/PUBLISHING-STATUS.md).
+> 0.6.0-alpha.3 is the local alpha version. See the current channel status in [publication and verification](docs/PUBLISHING-STATUS.md).
 
 ![OpenRouter Workbench — cost analytics, anomaly insights and routing presets](assets/previews/social-cover.jpg)
 
@@ -55,7 +55,7 @@ Follow the [Chinese quickstart](docs/QUICKSTART.md) to configure your own Key, r
 
 Both editions share 28 MCP tools; their hosting and companion features differ.
 
-| | Local MCP · 0.6.0-alpha.2 | Sites cloud · 0.5.0 |
+| | Local MCP · 0.6.0-alpha.3 | Sites cloud · 0.5.0 |
 | --- | --- | --- |
 | Runs on | Your computer; the process must stay running | Your own ChatGPT Sites project; your computer can be off |
 | Access | A local stdio MCP client, such as Cursor | Your private web dashboard and ChatGPT cloud plugin |
@@ -67,7 +67,7 @@ Both editions share 28 MCP tools; their hosting and companion features differ.
 
 **ChatGPT cloud cannot directly launch a local stdio process.** Choose the local edition for a desktop MCP client, or Sites for a private web dashboard and ChatGPT cloud access. The author's private service is not a public installation endpoint.
 
-Neither edition is a shared public billing service. Install the local edition with `npm install --ignore-scripts @cyuanxv/openrouter-analytics-mcp@0.6.0-alpha.2`. See the local guide for client configuration, or download the [GitHub Release](https://github.com/cyuanxv/openrouter-analytics-mcp/releases/tag/v0.6.0-alpha.2) tarball.
+Neither edition is a shared public billing service. Install the local edition with `npm install --ignore-scripts @cyuanxv/openrouter-analytics-mcp@0.6.0-alpha.3`. See the local guide for client configuration, or download the [GitHub Release](https://github.com/cyuanxv/openrouter-analytics-mcp/releases/tag/v0.6.0-alpha.3) tarball.
 
 ## Features
 
@@ -153,13 +153,13 @@ Clone or extract the source into `openrouter-analytics-mcp` before running the c
 
 [MCP Registry requirements and draft (Chinese; local edition)](docs/registry/ASSESSMENT.md)
 
-[Local installable MCP edition (0.6.0-alpha.2, all 28 tools)](packages/local-mcp/README.md)
+[Local installable MCP edition (0.6.0-alpha.3, all 28 tools)](packages/local-mcp/README.md)
 
 [Local package installation and validation (Chinese)](docs/LOCAL-VALIDATION.md)
 
 [Local package read-only account acceptance (Chinese)](docs/LOCAL-ACCOUNT-VALIDATION.md)
 
-[Release preparation / 发布前清单](docs/RELEASE-CANDIDATE.md) · [0.6.0-alpha.2 notes](docs/RELEASE-NOTES-0.6.0-alpha.2.md)
+[Release preparation / 发布前清单](docs/RELEASE-CANDIDATE.md) · [0.6.0-alpha.3 notes](docs/RELEASE-NOTES-0.6.0-alpha.3.md)
 
 [Cursor desktop installation acceptance / 桌面安装验收](docs/DESKTOP-VALIDATION.md)
 

@@ -3,13 +3,13 @@
   "name": "io.github.cyuanxv/openrouter-analytics-mcp",
   "title": "OpenRouter 工作台 Local",
   "description": "Local OpenRouter cost analytics, reports, experiments and routing presets over MCP stdio.",
-  "version": "0.6.0-alpha.2",
+  "version": "0.6.0-alpha.3",
   "packages": [
     {
       "registryType": "npm",
       "registryBaseUrl": "https://registry.npmjs.org",
       "identifier": "@cyuanxv/openrouter-analytics-mcp",
-      "version": "0.6.0-alpha.2",
+      "version": "0.6.0-alpha.3",
       "transport": {
         "type": "stdio"
       },
