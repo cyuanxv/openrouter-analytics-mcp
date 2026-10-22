@@ -4,7 +4,7 @@
 
 只访问固定 OpenRouter HTTPS 只读接口；不输出 Key、账户标识或余额，不调用模型，不修改 Key、数据库或目录权限。默认 MCP 入口保留原有 28 个工具。
 
-本地 Node 22 / 24 和前一功能提交的 Linux CI 已通过；候选版真实账户只读验收也通过。本次版本的 CI 与公开入口安装结果见发布记录。
+本地 Node 22 / 24 和前一功能提交的 Linux CI 已通过；候选版真实账户只读验收也通过。本次版本的 Linux 双版本 CI 和公开 npm 安装验收已通过，Registry 回读为 active；详见发布记录。
 
 安装：`npm install --ignore-scripts @cyuanxv/openrouter-analytics-mcp@0.6.0-alpha.2`。然后在安装目录运行 `./node_modules/.bin/openrouter-analytics-mcp doctor`。Key 应通过秘密环境设置提供，不得放进命令参数。
 
