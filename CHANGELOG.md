@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Cost reports now lead with plain-language spend, period changes and reconciled model contributions, followed by known facts, data gaps and next steps.
+- Report tools return readable text alongside structured evidence. Existing saved reports and delivery policy remain unchanged; no publication or Sites deployment is included.
+
 ## 0.6.0-alpha.2 - 2026-10-22
 
 - Added `openrouter-analytics-mcp doctor` with Chinese installation and configuration diagnostics, offline/JSON modes and distinct incomplete results.
