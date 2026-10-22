@@ -1,0 +1,25 @@
+node_modules
+.next
+.vercel
+.env
+.env.*
+!.env.example
+.DS_Store
+dist
+coverage
+
+*.tsbuildinfo
+
+# Local audit tools, redacted reports and release archives
+.release-local/
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Private local MCP databases and npm artifacts
+*.sqlite
+*.sqlite-journal
+*.sqlite-wal
+*.sqlite-shm
+*.tgz

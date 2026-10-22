@@ -1,0 +1,52 @@
+{
+  "name": "@cyuanxv/openrouter-analytics-mcp",
+  "version": "0.6.0-alpha.1",
+  "description": "Local OpenRouter cost analytics, reports, experiments and routing presets over MCP stdio.",
+  "mcpName": "io.github.cyuanxv/openrouter-analytics-mcp",
+  "type": "module",
+  "license": "Apache-2.0",
+  "author": {
+    "name": "cyuanxv",
+    "url": "https://x.com/cyuanxv"
+  },
+  "engines": {
+    "node": "^22.22.0 || >=24.0.0"
+  },
+  "bin": {
+    "openrouter-analytics-mcp": "dist/stdio.js"
+  },
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "drizzle",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "prepack": "npm run build"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.32.1",
+    "zod": "3.25.76"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cyuanxv/openrouter-analytics-mcp.git",
+    "directory": "packages/local-mcp"
+  },
+  "homepage": "https://github.com/cyuanxv/openrouter-analytics-mcp#readme",
+  "bugs": {
+    "url": "https://github.com/cyuanxv/openrouter-analytics-mcp/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "tag": "alpha"
+  }
+}

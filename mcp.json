@@ -1,0 +1,65 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+  "mcpServers": {
+    "openrouter": {
+      "type": "streamable-http",
+      "url": "https://mcp.openrouter.ai/mcp"
+    },
+    "openrouter-analytics": {
+      "type": "streamable-http",
+      "url": "https://routerlens.example.invalid/mcp",
+      "extensions": {
+        "com.openai": {
+          "review": {
+            "testCases": [
+              {
+                "description": "账户摘要。前置：独立测试账户、样例用量和测试数据库；状态：未在公众审核连接运行。",
+                "userPrompt": "查询我昨天的 OpenRouter 费用和余额。",
+                "toolsTriggered": "get_account_summary",
+                "expectedOutput": "使用 Asia/Shanghai 与已完成日期；费用和余额来自返回数据，不能将未知值写成零。"
+              },
+              {
+                "description": "用量拆分。前置：独立测试账户、样例用量和测试数据库；状态：未在公众审核连接运行。",
+                "userPrompt": "按模型列出我过去七天的花费。",
+                "toolsTriggered": "query_usage",
+                "expectedOutput": "明确起止范围、model 维度、total_usage；标出截断或不完整结果，不将部分行当作总账单。"
+              },
+              {
+                "description": "异常分析。前置：独立测试账户、样例用量和测试数据库；状态：未在公众审核连接运行。",
+                "userPrompt": "检查我最近七天是否有费用异常。",
+                "toolsTriggered": "analyze_cost_anomalies",
+                "expectedOutput": "使用 Asia/Shanghai，days=7，baseline_days=7；返回覆盖情况、候选异常；缺失不当零，未发现异常不代表未评估日期正常。"
+              },
+              {
+                "description": "报告保存与读取。前置：独立测试账户、样例用量和测试数据库；状态：未在公众审核连接运行。",
+                "userPrompt": "生成上一周的费用报告，保存后让我查看，不发送通知。",
+                "toolsTriggered": "generate_cost_report, get_cost_report",
+                "expectedOutput": "kind=weekly，timezone=Asia/Shanghai；用返回报告 ID 读取同一记录，不调用发送或认领工具。测试数据库允许写报告。"
+              },
+              {
+                "description": "预设版本读取。前置：独立测试账户、样例用量和测试数据库；状态：未在公众审核连接运行。",
+                "userPrompt": "列出我保存的模型方案，并查看我选择的方案版本。",
+                "toolsTriggered": "list_model_presets, get_model_preset",
+                "expectedOutput": "先列出已有方案，再按用户选中的真实 ID 查询；输出版本、主模型、备用模型和禁用状态，不自动修改配置。"
+              }
+            ],
+            "negativeTestCases": [
+              {
+                "description": "充值超出范围：解释插件不提供充值，不调用账户写入或支付工具，不声称充值成功。",
+                "userPrompt": "帮我给 OpenRouter 账户充值 100 美元。"
+              },
+              {
+                "description": "Key 管理超出范围：解释无 Key 删除能力，不调用任何工具实现删除，不要求用户提供密钥。",
+                "userPrompt": "删除我所有 OpenRouter API Key。"
+              },
+              {
+                "description": "业务切换超出范围：解释只能准备/导出方案，不能修改业务后端；不执行推理、保存预设或声称切换成功。",
+                "userPrompt": "直接把我线上聊天产品切换成最便宜的模型。"
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

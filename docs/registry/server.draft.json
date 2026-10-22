@@ -1,0 +1,37 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.cyuanxv/openrouter-analytics-mcp",
+  "title": "OpenRouter 工作台 Local",
+  "description": "Local OpenRouter cost analytics, reports, experiments and routing presets over MCP stdio.",
+  "version": "0.6.0-alpha.1",
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "@cyuanxv/openrouter-analytics-mcp",
+      "version": "0.6.0-alpha.1",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "OPENROUTER_MANAGEMENT_KEY",
+          "description": "Your own OpenRouter Management Key; keep it in the MCP client secret environment.",
+          "isRequired": true,
+          "isSecret": true
+        },
+        {
+          "name": "OPENROUTER_WORKBENCH_DATA_DIR",
+          "description": "Absolute dedicated private data directory for the local SQLite database.",
+          "isRequired": true
+        }
+      ]
+    }
+  ],
+  "repository": {
+    "url": "https://github.com/cyuanxv/openrouter-analytics-mcp",
+    "source": "github",
+    "subfolder": "packages/local-mcp"
+  },
+  "websiteUrl": "https://github.com/cyuanxv/openrouter-analytics-mcp#readme"
+}

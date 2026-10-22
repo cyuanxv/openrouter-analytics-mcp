@@ -1,0 +1,10 @@
+node_modules/
+dist/
+*.tgz
+
+# Private local MCP data and npm artifacts
+*.sqlite
+*.sqlite-journal
+*.sqlite-wal
+*.sqlite-shm
+*.tgz

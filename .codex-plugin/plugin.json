@@ -1,0 +1,33 @@
+{
+  "interface": {
+    "displayName": "OpenRouter 工作台",
+    "shortDescription": "费用分析、异常提醒与模型方案",
+    "longDescription": "由 cyuanxv 维护的第三方开源工作台，非 OpenRouter 官方产品。支持余额与费用查询、异常分析、保存报告、成本实验及模型预设导出。当前分析服务仅支持个人自行部署；不提供公众共享账单服务，不执行付费推理或自动切换业务模型。OpenRouter 官方 MCP 是独立服务，权限另行确认。",
+    "developerName": "cyuanxv",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Interactive"
+    ],
+    "defaultPrompt": [
+      "How much did I spend on OpenRouter yesterday, and what drove the cost?",
+      "Analyze my last 30 days of OpenRouter usage and find cost optimization opportunities.",
+      "Compare these OpenRouter models by live price, context, providers, and benchmark evidence."
+    ],
+    "logo": "assets/openrouter-icon.png",
+    "composerIcon": "assets/openrouter-icon.png"
+  },
+  "name": "openrouter-analytics-mcp",
+  "version": "0.5.0",
+  "description": "Third-party OpenRouter workbench for personal usage analysis, saved reports, cost experiments and routing preset export. Self-hosted owner-private service required.",
+  "author": {
+    "name": "cyuanxv"
+  },
+  "keywords": [
+    "openrouter",
+    "analytics",
+    "cost",
+    "models"
+  ],
+  "skills": "./skills",
+  "mcpServers": "./.mcp.json"
+}
