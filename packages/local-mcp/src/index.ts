@@ -9,8 +9,8 @@ export function createLocalServer({dataDir,key,transport=fetch}:{dataDir:string;
   if(key && /\s/.test(key))throw new Error('INVALID_KEY_FORMAT');
   const db=openDatabase(dataDir);
   const read=makeReadClient(key,transport);
-  const client={...read,status:()=>({management_key_configured:Boolean(key),mode:'local-stdio',adapter_version:'0.6.0-alpha.2',authentication_verified:false})};
-  const server=new McpServer({name:'OpenRouter 工作台',version:'0.6.0-alpha.2'});
+  const client={...read,status:()=>({management_key_configured:Boolean(key),mode:'local-stdio',adapter_version:'0.6.0-alpha.3',authentication_verified:false})};
+  const server=new McpServer({name:'OpenRouter 工作台',version:'0.6.0-alpha.3'});
   try {
     registerRouterLensTools(server,client);
     registerOperations(server,createOperations(client,db));

@@ -1,6 +1,6 @@
 {
   "name": "@cyuanxv/openrouter-analytics-mcp",
-  "version": "0.6.0-alpha.2",
+  "version": "0.6.0-alpha.3",
   "description": "Local OpenRouter cost analytics, reports, experiments and routing presets over MCP stdio.",
   "mcpName": "io.github.cyuanxv/openrouter-analytics-mcp",
   "type": "module",

@@ -1,6 +1,6 @@
 # 常见问题
 
-适用于本地 MCP 版 0.6.0-alpha.2。首次安装请按 [快速上手](QUICKSTART.md) 操作。
+适用于本地 MCP 版 0.6.0-alpha.3。首次安装请按 [快速上手](QUICKSTART.md) 操作。
 
 ## 必须有 ChatGPT Sites 才能用吗？
 
@@ -12,7 +12,7 @@ npm 安装的是本地 MCP 服务，在客户端对话中调用工具。README �
 
 ## 为什么找不到 doctor，或者版本不对？
 
-自检从 0.6.0-alpha.2 开始提供。检查实际安装目录的 `node_modules/@cyuanxv/openrouter-analytics-mcp/package.json`，并确认客户端指向同一份安装。明确安装 `@0.6.0-alpha.2`；当前 npm 的默认 latest 仍是旧版。不要根据状态工具的共享核心 `version=0.5.0` 判断包版本，应看 `adapter_version`。
+自检从 0.6.0-alpha.2 开始提供。检查实际安装目录的 `node_modules/@cyuanxv/openrouter-analytics-mcp/package.json`，并确认客户端指向同一份安装。明确安装 `@0.6.0-alpha.3`；当前 npm 的默认 latest 仍是旧版。不要根据状态工具的共享核心 `version=0.5.0` 判断包版本，应看 `adapter_version`。
 
 ## Node 已经装了，为什么还启动失败？
 

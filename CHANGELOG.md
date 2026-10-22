@@ -1,9 +1,9 @@
 # Changelog
 
-## Unreleased
+## 0.6.0-alpha.3 - 2026-10-23
 
 - Cost reports now lead with plain-language spend, period changes and reconciled model contributions, followed by known facts, data gaps and next steps.
-- Report tools return readable text alongside structured evidence. Existing saved reports and delivery policy remain unchanged; no publication or Sites deployment is included.
+- Report tools return readable text alongside structured evidence. Existing saved reports and delivery policy remain unchanged; no Sites deployment or Key changes are included.
 
 ## 0.6.0-alpha.2 - 2026-10-22
 
