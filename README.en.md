@@ -1,6 +1,6 @@
 # OpenRouter Workbench — Cost Analytics, Usage Tracking & MCP Tools
 
-> First public alpha: local MCP edition 0.6.0-alpha.1. Install locally, or deploy the Sites edition separately.
+> GitHub alpha 0.6.0-alpha.1 is available from Releases. npm uploads are currently timing out; MCP Registry registration is pending. See [publication status](docs/PUBLISHING-STATUS.md).
 
 ![OpenRouter Workbench — cost analytics, anomaly insights and routing presets](assets/previews/social-cover.jpg)
 
@@ -59,7 +59,7 @@ Both editions share 28 MCP tools; their hosting and companion features differ.
 
 **ChatGPT cloud cannot directly launch a local stdio process.** Choose the local edition for a desktop MCP client, or Sites for a private web dashboard and ChatGPT cloud access. The author's private service is not a public installation endpoint.
 
-Neither edition is a shared public billing service. Install the local edition with `npm install --ignore-scripts @cyuanxv/openrouter-analytics-mcp@0.6.0-alpha.1`; see the local guide for MCP client configuration.
+Neither edition is a shared public billing service. Install the local edition from the [GitHub Release](https://github.com/cyuanxv/openrouter-analytics-mcp/releases/tag/v0.6.0-alpha.1); see the local guide for the working installation command. The npm channel is not available yet.
 
 ## Features
 

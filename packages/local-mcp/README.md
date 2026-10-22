@@ -8,10 +8,10 @@
 
 需要 Node.js 22.22+（22 系列）或 24+。已测试 22.22.2、24.16.0；部分 Node 版本会向 stderr 输出 SQLite 实验性功能提示。
 
-在一个新的空目录中安装固定版本：
+目前请从 GitHub Release 安装固定版本（npm 上传遇到网络超时，Registry 尚未登记）：
 
 ```bash
-npm install --ignore-scripts @cyuanxv/openrouter-analytics-mcp@0.6.0-alpha.1
+npm install --ignore-scripts https://github.com/cyuanxv/openrouter-analytics-mcp/releases/download/v0.6.0-alpha.1/cyuanxv-openrouter-analytics-mcp-0.6.0-alpha.1.tgz
 ```
 
 在支持本地 MCP stdio 的客户端中新增如下配置。Node 和安装文件都使用自己电脑的绝对路径。通过客户端安全环境设置填写 Key，不把真实密钥粘贴进聊天、Git 或终端命令。
@@ -60,11 +60,11 @@ npm pack --ignore-scripts
 
 A local stdio MCP server with all 28 tools from the personal Sites edition: OpenRouter cost analytics, call metadata, anomaly investigation, saved reports, experiments and versioned routing presets. Requires Node.js 22.22+ (22.x) or 24+, your own OpenRouter account and, for account queries, your own Management Key.
 
-Install the pinned alpha into an empty directory using `npm install --ignore-scripts @cyuanxv/openrouter-analytics-mcp@0.6.0-alpha.1`. Configure a local MCP client to run the installed dist/stdio.js with an absolute Node.js path. Set OPENROUTER_WORKBENCH_DATA_DIR to a dedicated absolute private directory; provide OPENROUTER_MANAGEMENT_KEY through client secret settings. You can also install a downloaded release tarball with npm.
+Install the pinned alpha into an empty directory using `npm install --ignore-scripts https://github.com/cyuanxv/openrouter-analytics-mcp/releases/download/v0.6.0-alpha.1/cyuanxv-openrouter-analytics-mcp-0.6.0-alpha.1.tgz`. Configure a local MCP client to run the installed dist/stdio.js with an absolute Node.js path. Set OPENROUTER_WORKBENCH_DATA_DIR to a dedicated absolute private directory; provide OPENROUTER_MANAGEMENT_KEY through client secret settings. You can also install a downloaded release tarball with npm.
 
 SQLite records survive process restarts and package removal. Back up the data directory while all instances are stopped. There is no dashboard, HTTP listener, Sites identity, built-in scheduler or automatic Telegram delivery. This is not a ChatGPT cloud connector. No paid inference, key writes or production routing changes are performed. Returned data is also subject to your MCP client's policies.
 
-Public alpha; check the repository for the current Registry listing and verification status. Apache-2.0; independent of OpenRouter.
+GitHub public alpha. npm upload and MCP Registry registration are pending; check the repository publication status. Apache-2.0; independent of OpenRouter.
 
 ## Release links / 发布链接
 
