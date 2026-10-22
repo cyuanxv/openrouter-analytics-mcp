@@ -1,6 +1,6 @@
-# 本地 MCP 可安装版（0.6.0-alpha.1）
+# 本地 MCP 可安装版（0.6.0-alpha.2）
 
-本地版已公开到 npm，并已登记官方 MCP Registry。安装：`npm install --ignore-scripts @cyuanxv/openrouter-analytics-mcp@0.6.0-alpha.1`。当前状态见 [发布记录](PUBLISHING-STATUS.md)。
+本地版已公开到 npm，并已登记官方 MCP Registry。安装：`npm install --ignore-scripts @cyuanxv/openrouter-analytics-mcp@0.6.0-alpha.2`。当前状态见 [发布记录](PUBLISHING-STATUS.md)。
 
 [安装与客户端配置](../packages/local-mcp/README.md) · [Registry 评估](registry/ASSESSMENT.md)
 

@@ -1,8 +1,8 @@
 # 安装与配置自检
 
-本地开发候选，尚未发布。npm 已发布的 `0.6.0-alpha.1` 仍是原版本，不支持 `doctor`。Sites 云端版不使用此命令。
+从本地版 `0.6.0-alpha.2` 开始提供；旧版 `0.6.0-alpha.1` 不支持 `doctor`。Sites 云端版不使用此命令。
 
-从完整源码构建本地包后，在 `packages/local-mcp` 中运行 `node dist/stdio.js doctor`；安装候选 tarball 后运行 `./node_modules/.bin/openrouter-analytics-mcp doctor`。正常 MCP 配置仍不加参数。
+从完整源码构建本地包后，在 `packages/local-mcp` 中运行 `node dist/stdio.js doctor`；安装 npm 包或 tarball 后运行 `./node_modules/.bin/openrouter-analytics-mcp doctor`。正常 MCP 配置仍不加参数。
 
 通过终端或 MCP 客户端的秘密环境设置提供 Key；不要把真实 Key 写进示例命令。终端与 MCP 客户端不共享配置，需在实际使用的环境分别检查。
 
