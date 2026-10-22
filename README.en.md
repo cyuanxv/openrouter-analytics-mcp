@@ -40,6 +40,10 @@ flowchart LR
 
 *Conceptual feature flow, not a product screenshot. You integrate exported configurations into your application; this service does not switch production models.*
 
+## Getting started
+
+Follow the [Chinese quickstart](docs/QUICKSTART.md) to configure your own Key, run diagnostics, query your account, and save and read your first cost report. See the [Chinese FAQ](docs/FAQ.md) for common setup issues. These guides cover the local MCP edition; Sites deployment is separate.
+
 ## Example questions in your MCP client
 
 - “What did I spend on OpenRouter yesterday, and which models drove it?”
