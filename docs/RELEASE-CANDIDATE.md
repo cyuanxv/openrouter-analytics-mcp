@@ -1,50 +1,31 @@
-> 本文保留发布前准备流程；实际发布状态以仓库版本和公开入口为准。
+# 发行检查清单
 
-# 发布前收口清单
+首个公开版本 0.6.0-alpha.1 已发布到 GitHub、npm 和官方 MCP Registry，公开入口安装验收已通过。当前状态见 [发布记录](PUBLISHING-STATUS.md)，自动测试见 [TESTING.md](TESTING.md)。本文件保留原路径，供后续发行复用。
 
-当前只准备本地材料，不创建仓库，不发布 npm/Registry，不改 Sites。
+## 当前标识与入口
 
-## 统一标识
-
-| 用途 | 发布候选值 |
+| 用途 | 值 |
 | --- | --- |
-| 产品名称 | OpenRouter 工作台 / OpenRouter Workbench |
-| 新 GitHub 仓库 | cyuanxv/openrouter-analytics-mcp |
-| npm 包 | @cyuanxv/openrouter-analytics-mcp |
-| Registry 服务 | io.github.cyuanxv/openrouter-analytics-mcp |
+| 产品 | OpenRouter 工作台 / OpenRouter Workbench |
+| GitHub | https://github.com/cyuanxv/openrouter-analytics-mcp |
+| npm | https://www.npmjs.com/package/@cyuanxv/openrouter-analytics-mcp |
+| Registry | io.github.cyuanxv/openrouter-analytics-mcp |
 | CLI | openrouter-analytics-mcp |
-| 本地包版本 | 0.6.0-alpha.1 |
-| Sites 核心版本 | 0.5.0 |
+| 已发行本地版 | 0.6.0-alpha.1 |
+| Sites 业务核心 | 0.5.0 |
 
-GitHub 仓库尚未创建、npm 包尚未发布；这些 URL 仅作为拟发布元数据。当前准备账户为 cyuanxv；npm 命令行身份、邮箱验证及发布用 2FA 已核对，Registry GitHub 登录与命名空间权限已确认。登录凭据有有效期，正式发布前应再次确认有效性。
+当前本地 npm 包可公开发行，使用 publishConfig.access=public、tag=alpha；没有 private=true 防护。Sites 子项目保留 private=true，避免把云端服务误发到 npm。
 
-## 发布链接（当前未生效）
+## 后续发行前
 
-- 仓库：https://github.com/cyuanxv/openrouter-analytics-mcp
-- 安装说明：https://github.com/cyuanxv/openrouter-analytics-mcp/tree/main/packages/local-mcp
-- npm：https://www.npmjs.com/package/@cyuanxv/openrouter-analytics-mcp
-- 问题反馈：https://github.com/cyuanxv/openrouter-analytics-mcp/issues
-- 源码包已包括本地可用的全部对应文档；当前安装使用随附 .tgz。
+1. 核对版本、mcpName、包名、server.json 与锁文件；双语 README、安装说明和版本记录应一致。
+2. 运行 Linux Node 22/24 CI：本地与 Sites 构建/测试、Sites 产物校验、tarball 实际安装与 stdio 重启读回。检查源码、发行文件及敏感信息。
+3. 修改版本号后重新打包并检查发行白名单，避免依赖、数据库、秘密文件进入包。打包构建需要完整源码树。
+4. 确认本次发行授权、npm 2FA 与 Registry 登录有效性。先发布 npm，再登记对应版本的 Registry 元数据；已存在的版本先读回核对，不能盲目重复上传。
+5. 从公开 npm 入口全新安装并校验发行包；读回 GitHub Release 和 Registry 状态，再更新发布记录。
 
-## 已完成
+本清单和 CI 不自动发布、部署或发送通知。发行操作单独授权；不改旧私有仓库、正式 Sites、OpenRouter Key 或云端任务。
 
-仓库名已确认使用 `openrouter-analytics-mcp`，产品名保留 OpenRouter 工作台 / OpenRouter Workbench。
+## 已有证据的边界
 
-名称、版本、mcpName、repository、homepage、bugs、Registry repository/subfolder 一致。简介、Topics、封面、双语 README、安装说明、许可证、品牌归属、版本说明、真实账户脱敏验收已有材料。
-
-新仓库应从干净快照创建首个提交，不复制旧私有 Git 历史。现有私有仓库继续保持原状。
-
-## 桌面客户端验收
-
-Cursor 桌面已登录，独立 tarball 安装后 Connected、28 tools enabled 均由客户端状态和专属日志确认。配置未含真实 Key，已清理并恢复原全局配置状态。详见 [桌面验收记录](DESKTOP-VALIDATION.md)。
-
-Cursor 对话内 routerlens_status、list_cost_reports、list_model_presets 三项只读调用已通过，展开工具卡片确认状态与空列表原始结果。此次未配置 Key、未查上游。非空记录持久化与真实账户验收仍分别记录。
-
-## 待正式发布授权后
-
-1. 按已确认名称创建新仓和全新历史；设置 About、Topics、Social preview。
-2. 再次核对 npm 登录、包名与版本可用性，解除 private 防护，重新打包检查后按公开 alpha 发行；当前 private=true 保留。
-3. 在公开 npm 包可获取后，确认 Registry 登录有效（必要时重新登录），将登记草稿保存为最终 server.json，复核并登记。
-4. 从公共入口重新安装验收，核对显示名称、文档链接和发现信息。
-
-以上发布步骤均未执行；不将本地候选材料表述为已公开可安装。
+[Cursor 桌面记录](DESKTOP-VALIDATION.md) 覆盖连接、28 工具发现与三项只读对话调用；[真实账户记录](LOCAL-ACCOUNT-VALIDATION.md) 覆盖授权账户的限定只读查询。CI 使用模拟数据，不代替桌面 UI、真实账户或 Sites 部署验收。Windows 原生安装尚未验证。

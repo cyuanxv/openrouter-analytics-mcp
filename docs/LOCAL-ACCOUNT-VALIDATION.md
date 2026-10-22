@@ -1,3 +1,5 @@
+> 历史验收记录：下文“未发布”和其他状态仅描述该次检查当时。当前 GitHub、npm 与 Registry 已发布，最新状态见 [发布记录](PUBLISHING-STATUS.md)，持续测试见 [自动测试](TESTING.md)。
+
 # 本地版安装与真实账户只读验收
 
 结果：通过。使用已交付的 0.6.0-alpha.1 tarball，在全新独立安装目录启动真实 MCP stdio 子进程（Node.js 22.22.2），不是直接调用源码代替安装验收。

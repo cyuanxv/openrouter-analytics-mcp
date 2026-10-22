@@ -1,5 +1,7 @@
 # OpenRouter Workbench — Cost Analytics, Usage Tracking & MCP Tools
 
+[![Linux CI](https://github.com/cyuanxv/openrouter-analytics-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/cyuanxv/openrouter-analytics-mcp/actions/workflows/ci.yml)
+
 > 0.6.0-alpha.1 is available on GitHub, npm (alpha) and the official MCP Registry. See [publication and verification](docs/PUBLISHING-STATUS.md).
 
 ![OpenRouter Workbench — cost analytics, anomaly insights and routing presets](assets/previews/social-cover.jpg)
@@ -125,7 +127,7 @@ This is not a generic Vercel or arbitrary Worker deployment package, and it does
 
 ## Verification and limitations
 
-A previous Sites self-hosting acceptance deployed an independent private project and fresh database from the self-hosting source. This is historical cloud evidence, not a deployment of this final local candidate. The acceptance run passed 192 tests, build and artifact validation, native MCP authentication, real account queries, browser queries, and report/preset save-and-readback checks.
+A previous Sites self-hosting acceptance deployed an independent private project and fresh database from the self-hosting source. This is historical cloud evidence, not a deployment of this local release. The acceptance run passed 192 tests, build and artifact validation, native MCP authentication, real account queries, browser queries, and report/preset save-and-readback checks.
 
 This was a new project under the same owner account, not a test with another person's ChatGPT account. External Telegram delivery and every parameter combination were not tested. Missing or truncated analytics data remains explicitly incomplete; a successful report does not guarantee historical anomaly attribution.
 
@@ -160,3 +162,6 @@ Clone or extract the source into `openrouter-analytics-mcp` before running the c
 **© 2026 cyuanxv · [X / Twitter @cyuanxv](https://x.com/cyuanxv)**
 
 Licensed under [Apache-2.0](LICENSE). Rights to the OpenRouter name and official icon remain with their respective owners.
+
+
+[Automated testing](docs/TESTING.md): Linux Node 22/24 source builds, synthetic tests and packed-install stdio checks. See CI for actual run results.

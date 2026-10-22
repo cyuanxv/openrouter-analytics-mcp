@@ -1,5 +1,7 @@
 # OpenRouter 工作台｜费用分析、异常检测与模型路由配置
 
+[![Linux CI](https://github.com/cyuanxv/openrouter-analytics-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/cyuanxv/openrouter-analytics-mcp/actions/workflows/ci.yml)
+
 > 0.6.0-alpha.1 已发布到 GitHub、npm（alpha）和官方 MCP Registry。详见[发布与验收记录](docs/PUBLISHING-STATUS.md)。
 
 ![OpenRouter Workbench — cost analytics, anomaly insights and routing presets](assets/previews/social-cover.jpg)
@@ -135,3 +137,6 @@ npm run validate
 **© 2026 cyuanxv · [X / Twitter @cyuanxv](https://x.com/cyuanxv)**
 
 本项目采用 [Apache-2.0 许可证](LICENSE)。OpenRouter 名称及官方图标的权利归其各自权利人所有。
+
+
+[自动测试与验收范围](docs/TESTING.md)：Linux Node 22/24 构建、模拟测试及安装包 stdio 检查；当前运行结果见 CI。

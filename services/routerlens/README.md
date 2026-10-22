@@ -1,6 +1,6 @@
 > 当前源码路径为 `services/routerlens`；首次使用请看 [中文安装说明](../../docs/INSTALL.md)。下文保留历次功能设计与验收边界。
 
-# RouterLens 0.5.0 public Worker candidate
+# OpenRouter 工作台 — Sites 核心 0.5.0
 
 Owner-private Sites MCP adapter and personal operations workspace. Service release 0.5.0 exposes 28 tools including seven model preset and routing operations. Code is licensed under Apache-2.0.
 
@@ -38,7 +38,7 @@ Scheduled workflow: every Monday 09:00 Asia/Shanghai generate a weekly report; d
 
 `npm run build`, `npm test`, and `npm run validate` verify the artifact and synthetic scenarios. `scripts/build.sh` delegates to the same build pipeline from any working directory. Synthetic tests do not prove live account or notification access; record production receipts separately.
 
-This sanitized source snapshot is based on private source the earlier source version. Replace identity, origin, Site project and Telegram destination placeholders before your own deployment. The historical snapshot directory now points to this service directory. This is separate from the legacy root application.
+This sanitized Sites source is included in the public repository. Replace identity, origin, Site project and Telegram destination placeholders before your own deployment. The local npm adapter is a separate package under packages/local-mcp.
 
 ## Release 0.4.1: reconcile sparse hourly coverage
 

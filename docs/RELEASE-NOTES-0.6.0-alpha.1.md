@@ -1,3 +1,5 @@
+> 发行时记录：这里的验证范围描述 0.6.0-alpha.1 发行当时；后续 Linux Node 22/24 自动检查见 [TESTING.md](TESTING.md)。
+
 # OpenRouter 工作台 0.6.0-alpha.1
 
 状态：首个公开 alpha 发行。

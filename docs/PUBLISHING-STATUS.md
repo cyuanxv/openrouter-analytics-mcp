@@ -32,6 +32,6 @@ The GitHub Release tarball remains an alternative installation channel.
 - Registry readback returned HTTP 200, status active, the expected npm package, version and stdio transport.
 - GitHub Release anonymous download and installation were also verified separately.
 
-Windows/Linux native installation is not yet verified. The local edition has no dashboard, HTTP endpoint, built-in scheduler or automatic Telegram sending. Sites deployment is separate; no shared public billing endpoint is provided.
+Linux source and packed-install checks are covered by the [Node 22/24 CI workflow](TESTING.md); use the linked workflow run for actual pass/fail evidence. Windows native installation is not yet verified. The local edition has no dashboard, HTTP endpoint, built-in scheduler or automatic Telegram sending. Sites deployment is separate; no shared public billing endpoint is provided.
 
 The existing private repository and production Sites service were not changed by this release. Earlier network/2FA waiting states are historical, not the current publication status.

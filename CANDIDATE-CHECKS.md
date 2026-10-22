@@ -1,3 +1,5 @@
+> 历史验收记录：下文“未发布”和其他状态仅描述该次检查当时。当前 GitHub、npm 与 Registry 已发布，最新状态见 [发布记录](docs/PUBLISHING-STATUS.md)，持续测试见 [自动测试](docs/TESTING.md)。
+
 # 干净开源候选版检查记录
 
 状态：仅本地审阅，尚未发布、推送、部署或提交 ChatGPT 审核。
@@ -35,4 +37,4 @@
 
 ## 本地安装版新增验收
 
-新增 packages/local-mcp 0.6.0-alpha.1，完整 28 工具、stdio 与 SQLite；原 Sites 核心保持 0.5.0。Node.js 22/24 各 14 项本地测试及实际 tarball 安装复验通过，Sites 192 项回归通过。本地版不附带网页或后台定时任务。完整记录见 docs/LOCAL-VALIDATION.md；所有公开登记仍为草稿。
+新增 packages/local-mcp 0.6.0-alpha.1，完整 28 工具、stdio 与 SQLite；原 Sites 核心保持 0.5.0。Node.js 22/24 各 14 项本地测试及实际 tarball 安装复验通过，Sites 192 项回归通过。本地版不附带网页或后台定时任务。完整记录见 docs/LOCAL-VALIDATION.md；此处描述本地实现验收时的状态；后续公开发行与 Registry 登记已完成，见发布记录。

@@ -1,12 +1,14 @@
-# 发布时可用的介绍与传播材料（尚未发布）
+# 项目介绍与后续传播材料
+
+GitHub、npm 和 Registry 已发布；简介、Topics 与封面见 [当前配置](GITHUB-SETUP.md)。下文的发帖、视频、教程及独立网站是后续选项，尚未执行，不代表已获授权。
 
 ## GitHub 简介
 
-Self-hosted OpenRouter cost analytics, usage tracking, anomaly detection and model routing presets. MCP tools for ChatGPT. Built by @cyuanxv.
+Self-hosted OpenRouter analytics and MCP server for cost tracking, anomaly detection, reports, and model routing presets.
 
-## 推荐 Topics
+## 已配置 Topics
 
-openrouter, mcp, chatgpt, llm, cost-analysis, usage-tracking, analytics, self-hosted, model-routing, typescript
+openrouter, mcp-server, chatgpt, llm, cost-analysis, usage-tracking, self-hosted, model-routing
 
 ## 搜索主题
 
@@ -16,7 +18,7 @@ OpenRouter cost analytics / OpenRouter usage dashboard / OpenRouter spending tra
 
 ## 发布后的内容顺序
 
-1. 配 GitHub 简介、Topics 和独立社交预览图。README 已有功能流程示意。
+1. 维护已有 GitHub 简介、Topics 和分享封面；README 已有功能流程示意。
 2. 用纯模拟数据录制 30–60 秒演示：问费用、查异常、导出方案。显著标记演示数据，不展示私人站点与真实账单。
 3. 在 X 发演示与安装入口，围绕一个真实问题写短帖；不只贴仓库链接。
 4. 写三篇可搜索的教程：如何查看 OpenRouter 模型费用、如何排查费用突增、如何保存备用模型路由方案。给出限制与步骤。
@@ -33,4 +35,4 @@ README：功能流程图 + 模拟数据界面截图 + 短演示。分享卡片�
 - https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/classifying-your-repository-with-topics
 - https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/customizing-your-repositorys-social-media-preview
 
-以上为本地文案准备，不代表已公开仓库、发帖或创建网站。
+仓库及安装包已公开；传播文案准备不代表已发帖、发送推广或创建独立网站。
