@@ -1,0 +1,58 @@
+name: Linux CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: linux-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Linux / Node ${{ matrix.node }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ['22', '24']
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: ${{ matrix.node }}
+          package-manager-cache: false
+      - name: Show runtime
+        run: node --version && npm --version
+      - name: Install local MCP dependencies
+        working-directory: packages/local-mcp
+        run: npm ci --ignore-scripts
+      - name: Build local MCP
+        working-directory: packages/local-mcp
+        run: npm run build
+      - name: Test local MCP
+        working-directory: packages/local-mcp
+        run: npm test
+      - name: Verify packed installation and stdio persistence
+        working-directory: packages/local-mcp
+        run: node scripts/check-installed.mjs
+      - name: Install Sites test dependencies
+        working-directory: services/routerlens
+        run: npm ci --ignore-scripts
+      - name: Build Sites artifact
+        working-directory: services/routerlens
+        run: npm run build
+      - name: Test Sites with simulated data
+        working-directory: services/routerlens
+        run: npm test
+      - name: Validate Sites artifact
+        working-directory: services/routerlens
+        run: npm run validate

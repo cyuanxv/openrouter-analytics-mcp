@@ -1,3 +1,5 @@
+> 历史验收记录：下文“未发布”和其他状态仅描述该次检查当时。当前 GitHub、npm 与 Registry 已发布，最新状态见 [发布记录](PUBLISHING-STATUS.md)，持续测试见 [自动测试](TESTING.md)。
+
 # 本地可安装版验收记录
 
 本地包：0.6.0-alpha.1；复用业务核心：0.5.0。仅本机交付，未发布 npm、GitHub、Registry 或 ChatGPT，未影响既有 Sites 服务。
@@ -29,11 +31,9 @@
 
 测试数据均为虚构，未读取任何已有密钥或真实账户；安装依赖时访问公共包源。模拟上游不代表真实 API 的数据完整性或账户权限。随后已完成本机所有者真实账户只读验收，范围见 LOCAL-ACCOUNT-VALIDATION.md；其他用户的 Key 仍未验证，也未把本地 MCP 连接到 ChatGPT 云端。
 
-## 剩余发布条件
+## 发布状态更新
 
-软件包仍 private=true，没有公开 npm 版本；Registry 包名和命名空间尚未验证归属或占用。server.draft.json 已同步本地版配置并通过官方 schema 校验，这不代表 Registry 接受发布。
-
-对外发布前仍需确认包名和公开仓库、发布者授权，并复核最新规则和隐私扫描。云端连接、网页和定时发送继续由 Sites 方式提供；不能把本地包当作云端任务的自动替代。
+本次历史验收之后已完成公开发行、Registry 登记及匿名 npm 全新安装验收，见 [发布记录](PUBLISHING-STATUS.md)。本地包已解除 private 防护；Sites 子项目仍保持 private。
 
 ## 后续真实账户只读验收
 
