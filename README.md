@@ -2,7 +2,7 @@
 
 [![Linux CI](https://github.com/cyuanxv/openrouter-analytics-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/cyuanxv/openrouter-analytics-mcp/actions/workflows/ci.yml)
 
-> 0.6.0-alpha.2 发布准备中；公开入口状态见发布与验收记录。详见[发布与验收记录](docs/PUBLISHING-STATUS.md)。
+> 0.6.0-alpha.2 已发布到 GitHub、npm（alpha）和官方 MCP Registry。详见[发布与验收记录](docs/PUBLISHING-STATUS.md)。
 
 ![OpenRouter Workbench — cost analytics, anomaly insights and routing presets](assets/previews/social-cover.jpg)
 
