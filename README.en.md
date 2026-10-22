@@ -69,6 +69,8 @@ Both editions share 28 MCP tools; their hosting and companion features differ.
 
 Neither edition is a shared public billing service. Install the local edition with `npm install --ignore-scripts @cyuanxv/openrouter-analytics-mcp@0.6.0-alpha.3`. See the local guide for client configuration, or download the [GitHub Release](https://github.com/cyuanxv/openrouter-analytics-mcp/releases/tag/v0.6.0-alpha.3) tarball.
 
+Local 0.6.0-alpha.3 adds [readable cost reports](docs/REPORT-READING.md): spending and period changes first, followed by model contributions and explicit data gaps. Existing reports stay unchanged.
+
 ## Features
 
 - Check account credit, spending, and usage by model or provider.
