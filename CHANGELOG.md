@@ -1,10 +1,10 @@
 # Changelog
 
-## Unreleased — local candidate only
+## 0.6.0-alpha.2 - 2026-10-22
 
 - Added `openrouter-analytics-mcp doctor` with Chinese installation and configuration diagnostics, offline/JSON modes and distinct incomplete results.
 - Checks supported Node versions, Management Key identity, read-only account connectivity and safe data-directory access. Does not mutate keys, permissions or databases, and does not call models.
-- Existing 28 MCP tools and Sites behavior are unchanged. This candidate has not been published.
+- Existing 28 MCP tools and Sites behavior are unchanged. No Sites deployment or Key changes are included.
 
 ## 0.6.0-alpha.1 - 2026-10-22
 

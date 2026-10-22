@@ -2,7 +2,7 @@
 
 [![Linux CI](https://github.com/cyuanxv/openrouter-analytics-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/cyuanxv/openrouter-analytics-mcp/actions/workflows/ci.yml)
 
-> 0.6.0-alpha.1 已发布到 GitHub、npm（alpha）和官方 MCP Registry。详见[发布与验收记录](docs/PUBLISHING-STATUS.md)。
+> 0.6.0-alpha.2 发布准备中；公开入口状态见发布与验收记录。详见[发布与验收记录](docs/PUBLISHING-STATUS.md)。
 
 ![OpenRouter Workbench — cost analytics, anomaly insights and routing presets](assets/previews/social-cover.jpg)
 
@@ -57,7 +57,7 @@ flowchart LR
 
 两种版本共享 28 个 MCP 工具，但运行方式与配套能力不同：
 
-| 对比 | 本地 MCP 版 · 0.6.0-alpha.1 | Sites 云端版 · 0.5.0 |
+| 对比 | 本地 MCP 版 · 0.6.0-alpha.2 | Sites 云端版 · 0.5.0 |
 | --- | --- | --- |
 | 运行位置 | 自己的电脑，需保持进程运行 | 自己的 ChatGPT Sites 项目，不依赖本机持续开机 |
 | 使用入口 | 支持本地 stdio 的 MCP 客户端，例如 Cursor | 自己的私有网页和 ChatGPT 云端插件 |
@@ -69,9 +69,9 @@ flowchart LR
 
 **本地 stdio 进程不能直接作为 ChatGPT 云端连接入口。** 想在电脑上的 MCP 客户端使用，选本地版；想用网页或 ChatGPT 云端连接，选 Sites 版。现有作者私人服务不供公共安装使用。
 
-本地版安装：`npm install --ignore-scripts @cyuanxv/openrouter-analytics-mcp@0.6.0-alpha.1`。客户端配置见[本地安装说明](packages/local-mcp/README.md)，也可使用 [GitHub Release](https://github.com/cyuanxv/openrouter-analytics-mcp/releases/tag/v0.6.0-alpha.1) 安装包。另见[功能与边界](docs/FEATURES.md)和[安全说明](SECURITY.md)。
+本地版安装：`npm install --ignore-scripts @cyuanxv/openrouter-analytics-mcp@0.6.0-alpha.2`。客户端配置见[本地安装说明](packages/local-mcp/README.md)，也可使用 [GitHub Release](https://github.com/cyuanxv/openrouter-analytics-mcp/releases/tag/v0.6.0-alpha.2) 安装包。另见[功能与边界](docs/FEATURES.md)和[安全说明](SECURITY.md)。
 
-本地开发候选新增 [安装与配置自检](docs/DOCTOR.md)，提供中文诊断；尚未包含在已发布 npm 版本中。
+本地版新增 [安装与配置自检](docs/DOCTOR.md)，提供中文诊断、离线与 JSON 模式。
 
 ## 可以做什么
 
@@ -124,13 +124,13 @@ npm run validate
 
 [MCP Registry 发布条件与登记材料](docs/registry/ASSESSMENT.md)
 
-[本地可安装 MCP 版（0.6.0-alpha.1，完整 28 工具）](packages/local-mcp/README.md)
+[本地可安装 MCP 版（0.6.0-alpha.2，完整 28 工具）](packages/local-mcp/README.md)
 
 [本地包安装与验收结果](docs/LOCAL-VALIDATION.md)
 
 [本地包真实账户只读验收](docs/LOCAL-ACCOUNT-VALIDATION.md)
 
-[Release preparation / 发布前清单](docs/RELEASE-CANDIDATE.md) · [0.6.0-alpha.1 notes](docs/RELEASE-NOTES-0.6.0-alpha.1.md)
+[Release preparation / 发布前清单](docs/RELEASE-CANDIDATE.md) · [0.6.0-alpha.2 notes](docs/RELEASE-NOTES-0.6.0-alpha.2.md)
 
 [Cursor desktop installation acceptance / 桌面安装验收](docs/DESKTOP-VALIDATION.md)
 

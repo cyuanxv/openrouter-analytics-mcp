@@ -1,5 +1,7 @@
 # Publication and verification / 发布与验收记录
 
+0.6.0-alpha.2 is being prepared with Chinese installation diagnostics. The completed public-release acceptance below is for 0.6.0-alpha.1 until the new version is published and checked.
+
 Updated: 2026-10-22 (Asia/Shanghai). Version: 0.6.0-alpha.1.
 
 | Channel | Status |
