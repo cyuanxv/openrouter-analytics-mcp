@@ -25,6 +25,8 @@ Independent third-party project. Not an official OpenRouter product or endorsed 
 
 Actual Sites web interface rendered from the current source with synthetic local data. Amounts are not real bills or model prices.
 
+The local development candidate adds [Chinese installation diagnostics](docs/DOCTOR.md). This command is not yet in the published npm release.
+
 ## From spending questions to model decisions
 
 ```mermaid

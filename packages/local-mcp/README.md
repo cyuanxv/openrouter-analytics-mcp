@@ -35,6 +35,29 @@ npm install --ignore-scripts @cyuanxv/openrouter-analytics-mcp@0.6.0-alpha.1
 
 先调用 `routerlens_status`：mode=local-stdio，adapter_version=0.6.0-alpha.1，version 保留共享核心版本 0.5.0。authentication_verified=false 表示没有 Sites 云端身份认证；connectivity_verified=false 表示未测试上游连接。实际账户工具成功才证明自己的 Key 可用。Key 缺失时仍能管理本地记录和访问公开模型目录，账单查询会报错。保留 routerlens_status 等工具 ID 以兼容现有调用。
 
+## 安装与配置自检（本地候选，尚未发布）
+
+此功能尚未包含在 npm 的 `0.6.0-alpha.1` 中。先按下方步骤从完整源码构建，然后运行：
+
+```bash
+node dist/stdio.js doctor
+node dist/stdio.js doctor --offline
+node dist/stdio.js doctor --json
+node dist/stdio.js doctor --help
+```
+
+以上命令在 `packages/local-mcp` 目录执行；安装本地候选 tarball 后，也可运行 `./node_modules/.bin/openrouter-analytics-mcp doctor`。同一包不带参数时仍启动原 MCP 服务。
+
+- 检查 Node 版本、Key 配置及 Management 权限、基础账户读取、数据目录权限，用中文说明问题和解决办法。
+- 默认只向固定 OpenRouter HTTPS 地址发送 `GET /api/v1/key`、`GET /api/v1/credits`，最多两个请求，每个最多等待 5 秒；普通 Key 或未确认权限时不继续查询余额。
+- `--offline` 不联网，只检查本机配置；不能证明 Key 有效或账户可连接。
+- 从当前进程的 `OPENROUTER_MANAGEMENT_KEY` 与 `OPENROUTER_WORKBENCH_DATA_DIR` 读取配置。终端不会自动获得 MCP 客户端里的秘密配置；不要把 Key 作为命令参数、写进 Git 或粘贴到聊天。
+- 不打印 Key、账户标识或余额；不调用模型，不修改 Key，不创建目录、不试写文件、不打开数据库、不修改权限。检查目录权限不等于验证磁盘空间、数据库完整性或迁移成功。
+- 缺少目录会报错；尚未创建但父目录可访问会提示“待确认”，正常启动创建后应再次检查。Windows 的私有 ACL 未自动验证。
+- 退出码 `0`：基础检查通过；`1`：发现配置或权限错误；`2`：网络超时、离线、限流、待创建目录等导致未完整验证。`--json` 输出同样的中文诊断和稳定错误代码，便于提交脱敏问题报告。
+
+详见 [中文故障排查](../../docs/DOCTOR.md)。
+
 ## 数据与运行边界
 
 - 数据在自己的 SQLite 中持久保存；账户查询会访问 OpenRouter，返回结果还受 MCP 客户端的数据政策约束。
@@ -65,6 +88,12 @@ Install the pinned alpha into an empty directory using `npm install --ignore-scr
 SQLite records survive process restarts and package removal. Back up the data directory while all instances are stopped. There is no dashboard, HTTP listener, Sites identity, built-in scheduler or automatic Telegram delivery. This is not a ChatGPT cloud connector. No paid inference, key writes or production routing changes are performed. Returned data is also subject to your MCP client's policies.
 
 Public alpha on npm and GitHub, registered as io.github.cyuanxv/openrouter-analytics-mcp in the official MCP Registry. See the repository publication and verification record. Apache-2.0; independent of OpenRouter.
+
+### Installation diagnostics (unreleased local candidate)
+
+After building the complete source, run `node dist/stdio.js doctor` in `packages/local-mcp` (or the installed candidate CLI with the `doctor` subcommand). `--offline` makes no network requests; `--json` emits structured Chinese diagnostics. The already-published `0.6.0-alpha.1` does not include this command.
+
+The check validates supported Node versions, Management Key identity, basic account credit-read access, and directory access. It only calls the fixed HTTPS `/api/v1/key` and `/api/v1/credits` GET endpoints, with bounded responses and timeouts, and never follows redirects. It prints no key, balance, account identity or raw upstream errors. It does not create folders, write files, open databases, change permissions, mutate keys or invoke models. It does not prove analytics access, database integrity, migration success, free disk space or Windows ACL privacy. Exit codes: 0 = basic checks passed, 1 = configuration/authentication error, 2 = incomplete verification. Terminal and MCP-client environments are separate.
 
 ## Release links / 发布链接
 

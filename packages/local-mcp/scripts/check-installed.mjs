@@ -52,7 +52,7 @@ try {
   assert.equal(packed.name, expected.name);
   const actualFiles = packed.files.map(file => file.path).sort();
   assert.deepEqual(actualFiles, [
-    'LICENSE', 'README.md', 'dist/index.js', 'dist/stdio.js',
+    'LICENSE', 'README.md', 'dist/index.js', 'dist/stdio.js', 'dist/doctor.js',
     'drizzle/0000_personal_ops.sql', 'drizzle/0001_routing_presets.sql', 'package.json',
   ].sort());
   writeFileSync(join(scratch, 'package.json'), '{"private":true,"type":"module"}\n');
@@ -61,6 +61,12 @@ try {
   assert.equal(installed.name, expected.name);
   assert.equal(installed.version, expected.version);
   assert.equal(installed.mcpName, expected.mcpName);
+
+  const doctor = spawnSync(process.execPath, [join(scratch, 'node_modules', ...expected.name.split('/'), 'dist', 'stdio.js'), 'doctor', '--offline', '--json'], {env: {...env, OPENROUTER_WORKBENCH_DATA_DIR: join(scratch, 'doctor-data')}, encoding: 'utf8', timeout: 5000});
+  assert.equal(doctor.status, 1);
+  const diagnostics = JSON.parse(doctor.stdout);
+  assert.equal(diagnostics.checks.find(c => c.id === 'key').code, 'KEY_MISSING');
+  assert.equal(diagnostics.checks.find(c => c.id === 'account').status, 'skip');
 
   client = await connect();
   assert.equal((await client.listTools()).tools.length, 28);
@@ -75,7 +81,7 @@ try {
   assert.equal((await call('get_cost_experiment', {experiment_id: 'ci-experiment'})).id, 'ci-experiment');
   assert.equal((await call('get_cost_report', {report_id: report.id})).payload.assessment, 'unknown');
   assert.equal((await client.callTool({name: 'get_account_summary', arguments: {include_spend_windows: false}})).isError, true);
-  console.log('Packed installation passed: 28 tools, local status, restart persistence, missing-key failure. No real account key supplied.');
+  console.log('Packed installation passed: 28 tools, local status, restart persistence, missing-key failure, Chinese doctor diagnostics. No real account key supplied.');
 } finally {
   if (client) await client.close();
   rmSync(scratch, {recursive: true, force: true});
