@@ -46,3 +46,24 @@ test('historical saved reports do not attach current-window attribution',async t
  const o=await harness(t);const r=await call(o,'generate_cost_report',{kind:'weekly',timezone:'UTC',end_date:'2026-10-01'});
  assert.deepEqual(r.payload.attributions,[]);assert.equal(r.payload.anomalies.available,false);assert.doesNotMatch(r.payload.telegram_text,/自动归因/);
 });
+
+test('saved report compares model changes across periods and reuses summary without extra queries',async t=>{
+ const queries=[];
+ const c=client({queryAnalytics:async q=>{
+  queries.push(q);const current=q.time_range.start>='2026-09-24T00:00:00.000Z';
+  const row=cost=>Object.fromEntries(q.metrics.map(m=>[m,m==='total_usage'?cost:10]));
+  let rows=(q.dimensions??[]).includes('model')?[{...row(80),model:'example/steady'},{...row(current?40:20),model:'example/rising'}]:[row(current?120:100)];
+  for(const r of rows){for(const d of q.dimensions??[])if(!(d in r))r[d]='example';if(q.granularity)r['date__'+q.granularity]=q.time_range.start;}
+  return {data:{data:rows,metadata:{truncated:false,row_count:rows.length}}};
+ }});
+ const o=await harness(t,c),r=await call(o,'generate_cost_report',{kind:'weekly',timezone:'UTC',end_date:'2026-10-01'});
+ assert.equal(r.payload.spend.current,120);assert.equal(r.payload.spend.previous,100);
+ assert.equal(r.payload.summary.model_changes.items[0].model,'example/rising');assert.equal(r.payload.summary.model_changes.items[0].change_usd,20);
+ assert.match(r.payload.telegram_text,/本期花了多少：\$120.0000/);assert.match(r.payload.telegram_text,/多花 \$20.0000/);
+ assert(queries.some(q=>q.dimensions?.includes('model')&&q.time_range.start==='2026-09-17T00:00:00.000Z'));
+ assert(queries.filter(q=>q.dimensions?.includes('model')).every(q=>q.limit<=1000));
+ const n=queries.length;
+ assert.deepEqual(await call(o,'get_cost_report',{report_id:r.id}),r);
+ assert.deepEqual(await call(o,'generate_cost_report',{kind:'weekly',timezone:'UTC',end_date:'2026-10-01'}),r);
+ assert.equal(queries.length,n);assert.equal(r.delivery_state,'pending');
+});

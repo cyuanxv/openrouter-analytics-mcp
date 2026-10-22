@@ -6,6 +6,7 @@ import { addCalendarDays, dateStringInZone, startOfDayUtc } from './time';
 import { publicErrorMessage, PublicError, OpenRouterError } from './errors';
 import { requiredNumber } from './analytics';
 import { explainCostAnomaly } from './costAttribution';
+import { summarizeCostReport, reportMessage } from './reportSummary';
 
 const zone=z.enum(['UTC','Asia/Shanghai']).default('Asia/Shanghai');
 const date=z.string().regex(/^\d{4}-\d{2}-\d{2}$/).refine(v=>{try{return new Date(v+'T00:00:00Z').toISOString().slice(0,10)===v}catch{return false}},'Invalid calendar date');
@@ -24,7 +25,6 @@ export function completedRange(days:number,timezone:string,endDate?:string,now=n
 function boundedRange(start:string,end:string,timezone:string){const d=(Date.parse(end)-Date.parse(start))/86400000;if(!Number.isInteger(d)||d<1||d>31)throw new PublicError('INVALID_RANGE');return {start:startOfDayUtc(start,timezone).toISOString(),end:startOfDayUtc(end,timezone).toISOString()};}
 function total(x:any,metric:string){return x?.totals_complete===true&&x.rows.length>0&&typeof x.totals?.[metric]==='number'?x.totals[metric]:null;}
 function change(current:number|null,previous:number|null){return {current,previous,increase:current===null||previous===null?null:current-previous,percent:current===null||previous===null||previous<=0?null:(current-previous)/previous*100};}
-function money(v:any){return typeof v==='number'?'$'+v.toFixed(4):'未知';}
 export function normalizeGeneration(response:any,id:string){
  const row=response?.data??response;if(!row||row.id!==id)throw new PublicError('INVALID_RESPONSE');
  const out:any={id};
@@ -72,7 +72,7 @@ export function createOperations(client:RouterLensToolClient,db?:DB,now:()=>Date
   const range=completedRange(i.kind==='weekly'?7:1,i.timezone,i.end_date,now());const rid=`${i.kind}:${i.timezone.replace('/','_')}:${range.end_date}`;
   const existing=await store.report(rid);if(existing)return existing;
   const previous=completedRange(i.kind==='weekly'?7:1,i.timezone,range.start_date,now());
-  const [current,prior,models,providers,anomalies]=await Promise.all([optional(()=>query(range)),optional(()=>query(previous)),optional(()=>query(range,['model'],10)),optional(()=>invoke('query_usage',{time_range:{start:range.start,end:range.end},granularity:'hour',dimensions:['provider'],metrics:['total_usage','request_count'],limit:100,order_by:{field:'total_usage',direction:'desc'}})),optional(()=>invoke('analyze_cost_anomalies',{timezone:i.timezone,days:i.kind==='weekly'?7:1,baseline_days:7}))]);
+  const [current,prior,models,priorModels,providers,anomalies]=await Promise.all([optional(()=>query(range)),optional(()=>query(previous)),optional(()=>query(range,['model'])),optional(()=>query(previous,['model'])),optional(()=>invoke('query_usage',{time_range:{start:range.start,end:range.end},granularity:'hour',dimensions:['provider'],metrics:['total_usage','request_count'],limit:100,order_by:{field:'total_usage',direction:'desc'}})),optional(()=>invoke('analyze_cost_anomalies',{timezone:i.timezone,days:i.kind==='weekly'?7:1,baseline_days:7}))]);
   // The anomaly tool uses current time, so historical reports must not attach a different window's anomalies.
   const anomalyEvidence=range.end_date===dateStringInZone(now(),i.timezone)?anomalies:{available:false,reason:'Historical anomaly window not queried.'};
   const spend=change(current.available?total(current.data,'total_usage'):null,prior.available?total(prior.data,'total_usage'):null);
@@ -83,13 +83,9 @@ export function createOperations(client:RouterLensToolClient,db?:DB,now:()=>Date
   for(const candidate of candidates.slice(0,3)){attributions.push({date:candidate.date,...await optional(()=>explainCostAnomaly({date:candidate.date,timezone:i.timezone,baseline_days:7},client.queryAnalytics,now()))});}
   const priorAlert=i.kind==='daily_alert'?await store.report(`daily_alert:${i.timezone.replace('/','_')}:${range.start_date}`):null;
   const notify=i.kind==='weekly'||assessment==='candidate'||((assessment==='unknown'||spend.current===null)&&priorAlert?.payload?.assessment!=='unknown');
-  const lines=[`OpenRouter 工作台 ${i.kind==='weekly'?'费用周报':'异常检查'}`,`${range.start_date} 至 ${range.end_date}（结束日不含，${i.timezone}）`,`费用：${money(spend.current)}；上期：${money(spend.previous)}`,`变化：${money(spend.increase)}${spend.percent===null?'':`（${spend.percent.toFixed(1)}%）`}`,`异常状态：${assessment==='unknown'?'数据不足，无法判断':assessment==='candidate'?'发现费用上涨候选，需排查':'本次可评估日期未发现候选异常'}`];
-  if(models.available){lines.push(`主要模型（${models.data.totals_complete?'返回结果完整':'仅返回的部分记录'}）：`);for(const row of models.data.rows.slice(0,3))lines.push(`${row.model}: ${money(row.total_usage)}`);}
-  if(anomalyEvidence.available)lines.push(`已评估 ${anomalyEvidence.data.evaluated_days} 天，跳过 ${anomalyEvidence.data.skipped_days} 天。`);
-  for(const item of attributions)lines.push(item.available?item.data.summary_text:`${item.date} 归因数据不足，异常候选仍需排查。`);
-  if(candidates.length>3)lines.push(`另有 ${candidates.length-3} 个异常日期，可按日期查询归因。`);
-  lines.push('缺失数据不视为零；金额为查询时观察值，非最终结算。');
-  return store.saveReport(rid,i.kind,{range,comparison_range:previous,spend,current,prior,models,providers,anomalies:anomalyEvidence,attributions,attribution_omitted_days:Math.max(0,candidates.length-3),assessment,should_notify:notify,telegram_text:lines.join('\n').slice(0,3500),generated_at:now().toISOString()});
+  const payload={range,comparison_range:previous,spend,current,prior,models,prior_models:priorModels,providers,anomalies:anomalyEvidence,attributions,attribution_omitted_days:Math.max(0,candidates.length-3),assessment,should_notify:notify,generated_at:now().toISOString()};
+  const summary=summarizeCostReport({kind:i.kind,...payload});
+  return store.saveReport(rid,i.kind,{...payload,summary,telegram_text:reportMessage(summary,attributions)});
  },true);
  add('list_cost_reports','List saved reports and delivery states. No query or notification is executed.',{limit:z.number().int().min(1).max(50).default(20)},async(i:any)=>({reports:await store.reports(i.limit)}));
  add('get_cost_report','Read a saved report including its completeness and delivery evidence.',{report_id:id},async(i:any)=>{const r=await store.report(i.report_id);if(!r)throw new Error('NOT_FOUND');return r;});
@@ -111,6 +107,16 @@ export function createOperations(client:RouterLensToolClient,db?:DB,now:()=>Date
  add('get_cost_experiment','Compare matched cases by owner-reviewed quality, actual/manual costs and latency. Includes unmatched cases and budget status; never performs a production switch.',{experiment_id:id},async(i:any)=>{const ex=await store.experiment(i.experiment_id);if(!ex)throw new Error('NOT_FOUND');return summarizeExperiment(ex);});
  add('list_cost_experiments','List saved experiment plans.',{},async()=>({experiments:await store.experiments()}));
  registerRouting(add,client,db);
- return {tools,async call(name:string,args:unknown){const t=tools.get(name);if(!t)return {isError:true,content:[{type:'text',text:'Unknown operation.'}]};try{const data=await t.run(z.object(t.inputSchema).strict().parse(args));return {content:[{type:'text',text:JSON.stringify(data)}],structuredContent:data};}catch(e){return errorResult(e);}}};
+ return {tools,async call(name:string,args:unknown){
+  const t=tools.get(name);
+  if(!t)return {isError:true,content:[{type:'text',text:'Unknown operation.'}]};
+  try{
+   const data=await t.run(z.object(t.inputSchema).strict().parse(args));
+   const report=['generate_cost_report','get_cost_report'].includes(name)&&typeof data?.payload?.summary?.text==='string';
+   const states:Record<string,string>={pending:'尚未发送',sending:'发送处理中，勿重复发送',sent:'已确认发送',unknown:'结果不确定，需人工核对'};
+   const text=report?`报告 ID：${data.id}\n${data.payload.summary.text}\n发送状态：${states[data.delivery_state]??'未确认'}`:JSON.stringify(data);
+   return {content:[{type:'text',text}],structuredContent:data};
+  }catch(e){return errorResult(e);}
+ }};
 }
 export function registerOperations(server:any,ops:ReturnType<typeof createOperations>){for(const t of ops.tools.values())server.registerTool(t.name,{title:t.name,description:t.description,inputSchema:t.inputSchema,annotations:t.annotations},(i:any)=>ops.call(t.name,i));}
