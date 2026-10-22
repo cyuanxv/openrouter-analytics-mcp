@@ -1,6 +1,6 @@
 # OpenRouter 工作台｜费用分析、异常检测与模型路由配置
 
-> GitHub alpha 0.6.0-alpha.1 已发布，可从 Release 安装。npm 上传遇到网络超时，MCP Registry 尚未登记；详见[当前发布状态](docs/PUBLISHING-STATUS.md)。
+> 0.6.0-alpha.1 已发布到 GitHub、npm（alpha）和官方 MCP Registry。详见[发布与验收记录](docs/PUBLISHING-STATUS.md)。
 
 ![OpenRouter Workbench — cost analytics, anomaly insights and routing presets](assets/previews/social-cover.jpg)
 
@@ -67,7 +67,7 @@ flowchart LR
 
 **本地 stdio 进程不能直接作为 ChatGPT 云端连接入口。** 想在电脑上的 MCP 客户端使用，选本地版；想用网页或 ChatGPT 云端连接，选 Sites 版。现有作者私人服务不供公共安装使用。
 
-本地版目前从 [GitHub Release](https://github.com/cyuanxv/openrouter-analytics-mcp/releases/tag/v0.6.0-alpha.1) 安装，命令见[本地安装说明](packages/local-mcp/README.md)。npm 渠道尚未发布。另见[功能与边界](docs/FEATURES.md)和[安全说明](SECURITY.md)。
+本地版安装：`npm install --ignore-scripts @cyuanxv/openrouter-analytics-mcp@0.6.0-alpha.1`。客户端配置见[本地安装说明](packages/local-mcp/README.md)，也可使用 [GitHub Release](https://github.com/cyuanxv/openrouter-analytics-mcp/releases/tag/v0.6.0-alpha.1) 安装包。另见[功能与边界](docs/FEATURES.md)和[安全说明](SECURITY.md)。
 
 ## 可以做什么
 
