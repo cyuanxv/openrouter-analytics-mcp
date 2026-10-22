@@ -71,6 +71,8 @@ flowchart LR
 
 本地版安装：`npm install --ignore-scripts @cyuanxv/openrouter-analytics-mcp@0.6.0-alpha.1`。客户端配置见[本地安装说明](packages/local-mcp/README.md)，也可使用 [GitHub Release](https://github.com/cyuanxv/openrouter-analytics-mcp/releases/tag/v0.6.0-alpha.1) 安装包。另见[功能与边界](docs/FEATURES.md)和[安全说明](SECURITY.md)。
 
+本地开发候选新增 [安装与配置自检](docs/DOCTOR.md)，提供中文诊断；尚未包含在已发布 npm 版本中。
+
 ## 可以做什么
 
 查余额和费用、分析模型与供应商用量、查询调用元信息、检测及解释费用异常、保存周报与提醒记录、比较模型、记录成本实验、保存和导出模型路由方案。
